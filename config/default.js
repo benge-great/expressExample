@@ -2,9 +2,9 @@
 
 module.exports = {
   dbConfig: {
-    username: 'postgres',
-    password: 'postgres',
-    database: 'tb_perk_development',
+    username: 'root',
+    password: '123456',
+    database: 'reg',
     host: 'localhost',
     dialect: 'mysql',
     logging: process.env.DB_LOGGING === 'true' ? console.log : false,

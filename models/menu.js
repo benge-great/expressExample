@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primary: true,
+      primaryKey: true,
       autoIncrement: true,
     },
     name: {
@@ -25,12 +25,16 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     createdAt: {
-        type        : DataTypes.STRING,
-        defaultValue: DataTypes.NOW
+      type: DataTypes.STRING,
+      defaultValue: DataTypes.NOW
     },
     updatedAt: {
-        type        : DataTypes.STRING,
-        defaultValue: DataTypes.NOW
+      type: DataTypes.STRING,
+      defaultValue: DataTypes.NOW
     }
+  }, {
+    sequelize,
+    tableName: 'Menu'
   })
+  return Menu
 }
