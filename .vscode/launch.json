@@ -8,10 +8,19 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
+      "program": "${workspaceFolder}/app.js",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "init db",
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}/app.js"
+      "program": "${workspaceFolder}/init/index.js"
     }
   ]
 }
