@@ -17,8 +17,11 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     type: {
-      type: DataTypes.ENUM('primary', 'secondary'),
+      type: DataTypes.ENUM('primary', 'secondary', 'child'),
       allowNull: false,
+    },
+    href: {
+      type: DataTypes.STRING,
     },
     parentId: {
       type: DataTypes.INTEGER,

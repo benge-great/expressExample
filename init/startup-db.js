@@ -8,21 +8,13 @@ const bootstrapData = require('./bootstrap/data.json')
 
 
 const query = (sql, values) => {
-  const pool = mysql.createPool(bootstrapDBConfig)
   return new Promise((resolve, reject) => {
-    pool.getConnection((err, connection) => {
-      if (err) {
-        reject(err)
-        return
-      }
-      connection.query(sql, values, (err, rows) => {
-        if (err) {
-          reject(err)
-          return
-        }
-        resolve(rows)
-        connection.release()
-      })
+    const connection = mysql.createConnection(bootstrapDBConfig);
+    connection.connect()
+    connection.query(sql, values, (err, result) => {
+      if (err) return reject(err)
+      resolve(result)
+      connection.end()
     })
   })
 }
@@ -48,14 +40,22 @@ const createTables = async () => {
   for (const table of Object.keys(models)) {
     const QueryInterface = sequelize.getQueryInterface();
     await QueryInterface.createTable(table, models[table].tableAttributes)
+    console.log(`table ${table} created!`)
     if (bootstrapData['data'][table]) {
       await insertData(models[table], bootstrapData['data'][table])
+      console.log(`data inserted into ${table}!`)
     }
   }
 };
 
 module.exports = async () => {
-  await dropDatabase()
-  await createDatabase()
-  await createTables()
+  try {
+    console.log('drop db...')
+    await dropDatabase()
+    console.log('create db...')
+    await createDatabase()
+    await createTables()
+  } catch (err) {
+    throw err
+  }
 }
