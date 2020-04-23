@@ -1,8 +1,8 @@
 const Knex = require('knex')
 const config = require('config')
 const knex = Knex({
-  client: 'mysql',
-  connection: config.get('mysqlConnect'),
+  client: 'pg',
+  connection: config.get('dbConfig'),
   debug: false,
   useNullAsDefault: true,
   pool: { min: 2, max: 10 }

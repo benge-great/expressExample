@@ -1,4 +1,4 @@
-var mysql = require('mysql');
+const { Client } = require('pg');
 const config = require('config')
 const Sequelize = require('sequelize')
 const dbConfig = config.get('dbConfig')
@@ -7,16 +7,12 @@ const bootstrapDBConfig = require('./bootstrap/config.json')
 const bootstrapData = require('./bootstrap/data.json')
 
 
-const query = (sql, values) => {
-  return new Promise((resolve, reject) => {
-    const connection = mysql.createConnection(bootstrapDBConfig);
-    connection.connect()
-    connection.query(sql, values, (err, result) => {
-      if (err) return reject(err)
-      resolve(result)
-      connection.end()
-    })
-  })
+const query = async(sql, values) => {
+  const client = new Client(bootstrapDBConfig);
+  await client.connect()
+  const result = await client.query(sql, values)
+  await client.end()
+  return result.rows
 }
 
 const dropDatabase = async () => {
@@ -50,10 +46,13 @@ const createTables = async () => {
 
 module.exports = async () => {
   try {
+
     console.log('drop db...')
     await dropDatabase()
+
     console.log('create db...')
     await createDatabase()
+
     await createTables()
   } catch (err) {
     throw err
