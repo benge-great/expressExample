@@ -4,7 +4,8 @@ const getMenu = async () => {
   const allMenu = await knex('Menu').select()
   const primary = allMenu.filter(menu => menu.type === 'primary')
   const secondary = allMenu.filter(menu => menu.type === 'secondary')
-  primary.forEach(parent => {
+  primary.forEach((parent, index) => {
+    parent.index = index + 1
     parent.children = allMenu.filter(menu => menu.parentId === parent.id && menu.type === 'child')
   })
   return { primary, secondary }
