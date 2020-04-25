@@ -3,8 +3,8 @@ const config = require('config')
 const Sequelize = require('sequelize')
 const dbConfig = config.get('dbConfig')
 const models = require('../models')
-const bootstrapDBConfig = require('./bootstrap/config.json')
-const bootstrapData = require('./bootstrap/data.json')
+const bootstrapDBConfig = require('./bootstrap/config')
+const bootstrapData = require('./bootstrap/data')
 
 
 const query = async(sql, values) => {
