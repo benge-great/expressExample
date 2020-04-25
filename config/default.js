@@ -1,12 +1,5 @@
 'use strict';
 
-const pgConnection = {
-  user: 'root',
-  password: '123456',
-  database: 'reg',
-  host: 'localhost',
-}
-
 module.exports = {
   dbConfig: {
     username: 'postgres',
