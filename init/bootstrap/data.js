@@ -32,6 +32,12 @@ module.exports = {
         name: "ABOUT",
         type: "secondary",
         href: "/article/about"
+      },
+      {
+        id: 6,
+        name: "EDITOR",
+        type: "secondary",
+        href: "/admin/editor"
       }
     ],
     Article: [
