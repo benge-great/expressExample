@@ -23,7 +23,16 @@ const getArticleList = async (topic) => {
   return result
 }
 
+const createArticle = async (article) => {
+  const { title, intro, selectedSecondaryMenu, content, } = article
+  const topic = [selectedSecondaryMenu.label.toLowerCase()]
+  const result = await knex('Article').insert({ title, intro, topic, content })
+  console.log(result)
+  return { msg: '已创建' }
+}
+
 module.exports = {
   getArticle,
-  getArticleList
+  getArticleList,
+  createArticle
 }
