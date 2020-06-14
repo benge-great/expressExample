@@ -28,11 +28,11 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     createdAt: {
-      type: DataTypes.STRING,
+      type: DataTypes.DATE,
       defaultValue: DataTypes.NOW
     },
     updatedAt: {
-      type: DataTypes.STRING,
+      type: DataTypes.DATE,
       defaultValue: DataTypes.NOW
     }
   }, {

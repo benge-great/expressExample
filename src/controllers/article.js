@@ -1,12 +1,17 @@
 const articleService = require('../services/article')
 
-const getArticle = async (req, res) => {
-  const result = await articleService.getArticle(req.params.title)
+const getArticleByTitle = async (req, res) => {
+  const result = await articleService.getArticleByTitle(req.params.title)
+  res.send(result)
+}
+
+const getArticleById = async (req, res) => {
+  const result = await articleService.getArticleById(req.params.id)
   res.send(result)
 }
 
 const getArticleList = async (req, res) => {
-  const result = await articleService.getArticleList(req.params.slug)
+  const result = await articleService.getArticleList(req.params.menuId)
   res.send(result)
 }
 const createArticle = async (req, res) => {
@@ -14,8 +19,15 @@ const createArticle = async (req, res) => {
   res.send(result)
 }
 
+const editArticle = async (req, res) => {
+  const result = await articleService.editArticle(req.body)
+  res.send(result)
+}
+
 module.exports = {
-  getArticle,
+  getArticleByTitle,
+  getArticleById,
   getArticleList,
-  createArticle
+  createArticle,
+  editArticle
 }

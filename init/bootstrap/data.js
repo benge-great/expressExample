@@ -35,16 +35,16 @@ module.exports = {
       },
       {
         id: 6,
-        name: "EDITOR",
+        name: "ADMIN",
         type: "secondary",
-        href: "/admin/editor"
+        href: "/admin"
       }
     ],
     Article: [
       {
         id: 1,
         title: "about",
-        topic: ["about"],
+        menuId: 999,
         intro: "什么是上乘武功，我曾经坚持认为是 kubernetes，后来发现，我错了",
         content: `
 ## 是什么

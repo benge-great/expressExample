@@ -16,11 +16,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    topic:{
-      type: DataTypes.ARRAY(DataTypes.STRING),
+    menuId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
-    intro:{
+    intro: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -29,11 +29,11 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     createdAt: {
-      type: DataTypes.STRING,
+      type: DataTypes.DATE,
       defaultValue: DataTypes.NOW
     },
     updatedAt: {
-      type: DataTypes.STRING,
+      type: DataTypes.DATE,
       defaultValue: DataTypes.NOW
     }
   }, {
