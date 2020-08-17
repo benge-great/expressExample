@@ -1,21 +1,23 @@
 const commentService = require('../services/comment')
 
-const createComment = async (req, res) => {
+const createComment = async (req, res, next) => {
     const result = await commentService.createComment(req.body)
-    res.send(result)
+    res.locals.result = result
+    await next()
 }
 
-const getCommentsByTitle = async (req, res) => {
+const getCommentsByTitle = async (req, res, next) => {
     const title = req.query.title
     if (!title) {
-        res.send([])
+        res.locals.result = []
+        await next()
         return
     }
     const result = await commentService.getCommentsByTitle(title)
-    res.send(result)
+    res.locals.result = result
+    await next()
 }
 
 module.exports = {
-    createComment,
-    // getCommentsByTitle
+    createComment
 }

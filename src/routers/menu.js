@@ -1,6 +1,7 @@
 const menController = require('../controllers/menu')
 const asyncHandler = require('express-async-handler')
 
-module.exports = (app)=>{
-  app.get('/menu',asyncHandler(menController.getMenu))
+module.exports = (app) => {
+  app.get('/menu', asyncHandler(menController.getMenu))
+  app.post('/menu', asyncHandler(menController.createMenu))
 }
